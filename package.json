@@ -1,0 +1,29 @@
+{
+  "name": "football",
+  "version": "0.0.1",
+  "description": "Football data parser",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "bin/coffee-compile.sh",
+    "pretest": "bin/coffee-compile.sh",
+    "test": "nodeunit test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/craig-buchanan/football.git"
+  },
+  "keywords": [
+    "football",
+    "football-data",
+    "html-parser"
+  ],
+  "author": "Craig Buchanan <craig.buchanan.is@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craig-buchanan/football/issues"
+  },
+  "homepage": "https://github.com/craig-buchanan/football",
+  "devDependencies": {
+    "nodeunit": "^0.9.0"
+  }
+}
