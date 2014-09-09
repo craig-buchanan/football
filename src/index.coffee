@@ -1,2 +1,3 @@
-module.exports = 
-	obj: "Test"
+require('./soccerstats-parser')
+
+

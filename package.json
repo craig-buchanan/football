@@ -24,6 +24,11 @@
   },
   "homepage": "https://github.com/craig-buchanan/football",
   "devDependencies": {
+    "coffee-script": "^1.8.0",
     "nodeunit": "^0.9.0"
+  },
+  "dependencies": {
+    "cheerio": "^0.17.0",
+    "request": "^2.42.0"
   }
 }
