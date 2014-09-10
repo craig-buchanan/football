@@ -3,7 +3,7 @@
 ###
 
 class Game
-	constructor: (@date, @homeTeam, @awayTeam, @home, @away, @round) ->
+	constructor: (@date, @homeTeam, @awayTeam, @home, @away) ->
 		@played = () -> 
 			@home isnt null and @away isnt null
 
@@ -31,6 +31,9 @@ class Game
 		return null if team isnt @homeTeam and team isnt @awayTeam
 		if @homeTeam == team then @awayTeam else @homeTeam
 		
+	toString: ->
+		scores = if @played() then @home + ":" + @away else "-"
+		@date +  " - " + @homeTeam.name + " vs " + @awayTeam.name + " " + scores
 
 module.exports = (date, hT, aT, h, a, round) ->
 	new Game(date, hT, aT, h, a, round)

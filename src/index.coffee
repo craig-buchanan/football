@@ -1,6 +1,10 @@
 parser = require('./soccerstats-parser')
+q = require('q')
 
-parser(2014)
+
+
+parser.EN_2014(q).then (games) -> 
+	console.log( g.toString() ) for g in games
 
 
 
