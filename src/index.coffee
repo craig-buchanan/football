@@ -1,3 +1,6 @@
-require('./soccerstats-parser')
+parser = require('./soccerstats-parser')
+
+parser(2014)
+
 
 
