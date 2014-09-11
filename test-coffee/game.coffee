@@ -8,8 +8,14 @@ t1 = team("Arsenal")
 t2 = team("Tottenham")
 g1 = game(new Date(), t1, t2, 5, 0)
 g2 = game(new Date(), t1, t2, 0, 0)
+
 exports.GameTest = 
+	"played is true when home and away are not null": (test) ->
+		test.ok(g1.played())
+		test.done()
+		
 	"teamPoints == 3 when team matches homeTeam and homeTeam is winner": (test) ->
+		test.strictEqual(g1.homeTeam(), t1)
 		test.equals(g1.teamPoints(t1), 3 )
 		test.done()
 	
@@ -38,7 +44,7 @@ exports.GameTest =
 		test.strictEqual(g1.opponent(t2), t1)
 		test.done()
 	
-	"goal against calculated correctly": (test) ->
+	"goals against calculated correctly": (test) ->
 		test.strictEqual(g1.teamGoalsAgainst(t1), 0)
 		test.strictEqual(g1.teamGoalsAgainst(t2), 5)
 		test.done()

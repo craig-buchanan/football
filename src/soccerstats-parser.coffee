@@ -35,6 +35,8 @@ class SoccerStatsLeagueDataParser
 	
 	parseDate: (dateStr) ->
 		[day, month, time] = trim(dateStr).replace(/\s-\s/, ' ').toLowerCase().split(/\s/)
+		if !day || !month || !time
+			return
 		day = parseInt(day);
 		day = if day < 10 then "0" + day else day + "" 
 		month = month_map[month];
@@ -44,27 +46,35 @@ class SoccerStatsLeagueDataParser
 	parse: ->
 		defer = q.defer()
 		request @url, (err, resp, body) =>
-				$ = cheerio.load(body);
-				games = []
-				rows = $('.tabbertab .trow3') 
-				$(rows).each (i, row) =>
-					cells = $(row).find('td')
-					date = @parseDate($(cells[0]).text())
-					return if(!date);
-					[homeTeam, awayTeam] = $(cells[1]).text().split(/\s-\s/).map (n) -> teams(trim(n))
-					[home, away] = [null, null]
-					scores = $(cells[2]).find("b")
-					if(scores.length)
-						[home, away] = $(scores[0]).text().split(/-/)
-					
-					games.push(game(date, homeTeam, awayTeam, home, away))
-				defer.resolve(games);
+			$ = cheerio.load(body);
+			games = []
+			rows = $('.tabbertab .trow3')
+			postponedDate = new Date(tz((@beginYear+1) + "-06-01 00:00", @zone))
+			$(rows).each (i, row) =>
+				cells = $(row).find('td')
+				
+				date = @parseDate($(cells[0]).text())
+				date = postponedDate if !date
+				
+				[homeTeam, awayTeam] = $(cells[1]).text().split(/\s-\s/).map (n) -> teams(trim(n))
+				[home, away] = [null, null]
+				scores = $(cells[2]).find("b")
+				if(scores.length)
+					[home, away] = $(scores[0]).text().split(/-/)
+				
+				games.push(game(date, homeTeam, awayTeam, home, away))
+			defer.resolve(games);
 		
 		defer.promise
 
+do_load = (qService, key, zone, year) ->
+		q = qService
+		new SoccerStatsLeagueDataParser(key, zone, year).parse()
 
 module.exports = 
-		EN_2014: (qService) ->
-			q = qService
-			new SoccerStatsLeagueDataParser('england', "Europe/London", 2014).parse()
+		EN1_2014: (qService) -> do_load(qService, 'england', "Europe/London", 2014)
+		EN2_2014: (qService) -> do_load(qService, 'england2', "Europe/London", 2014)
+		EN3_2014: (qService) -> do_load(qService, 'england3', "Europe/London", 2014)
+		EN4_2014: (qService) -> do_load(qService, 'england4', "Europe/London", 2014)
+			
 	

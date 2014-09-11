@@ -2,14 +2,14 @@
  * Football league
 ###
 
+Immutable = require('./immutable')
+
 LEAGUES = {
 }
 
-class LeagueSeason
-	constructor: (@league, @beginYear) ->
+class LeagueSeason extends Immutable
+	constructor: (args) ->
+		@[k] = v for k, v of @_buildProperties(['league', 'beginYear'],  args)
+		
 
-class LeagueSeasonFactory
-	
-
-class FootballLeague
-	constructor: (name) ->
+module.exports = LeagueSeason

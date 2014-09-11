@@ -1,14 +1,14 @@
 ###
  * New coffeescript file
 ###
+Immutable = require('./immutable')
 teams = {}
 
-class Team
-	constructor: (@name) ->
-		@_hashcode = @name.toLowerCase().replace().replace(/\s/g, '')
-
-	hashcode: ()-> 
-		@_hashcode
+class Team extends Immutable
+	constructor: (name) ->
+		@[k] = v for k, v of @_buildProperties(['name'],  {name: name})
+		_hashcode = @name().toLowerCase().replace().replace(/\s/g, '')
+		@hashcode = -> _hashcode
 
 
 module.exports = (teamName) ->
