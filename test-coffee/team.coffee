@@ -15,3 +15,6 @@ exports.teamTest =
 		test.strictEqual(t, t2, "Teams are not the same object when they should be")
 		test.done()
 		
+	"fromJSON should create a team object": (test) ->
+		test.done()
+		

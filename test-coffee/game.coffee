@@ -1,13 +1,15 @@
 ###
  * New coffeescript file
 ###
+json = require('json-serialize')
 team = require('../lib/team')
 game = require('../lib/game')
 
 t1 = team("Arsenal")
 t2 = team("Tottenham")
-g1 = game(new Date(), t1, t2, 5, 0)
-g2 = game(new Date(), t1, t2, 0, 0)
+g1 = game.newGame(new Date(), t1, t2, 5, 0)
+g2 = game.newGame(new Date(), t1, t2, 0, 0)
+g3 = game.newGame(new Date(), t2, t1, 1, 4)
 
 exports.GameTest = 
 	"played is true when home and away are not null": (test) ->
@@ -48,3 +50,17 @@ exports.GameTest =
 		test.strictEqual(g1.teamGoalsAgainst(t1), 0)
 		test.strictEqual(g1.teamGoalsAgainst(t2), 5)
 		test.done()
+		
+	"equals works": (test) ->
+		test.ok(g1.equals(g1))
+		test.ok(!g1.equals(g3), "2 different games are not inequal")
+		g3 = game.newGame(g1.date(), t1, t2, 4, 4)
+		test.ok(g1.equals(g3), " equals with date and teams is not working")
+		test.done()
+	
+	"from json works": (test) ->
+		data = JSON.stringify(g1)
+		unserialized = game.deserialize(JSON.parse(data))
+		test.ok(g1.equals(unserialized), " deserialized object is not equal to original object")
+		test.done()
+		

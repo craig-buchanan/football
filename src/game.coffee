@@ -1,10 +1,13 @@
 ###
  * Football Game
 ###
+team = require('./team')
 Immutable = require('./immutable')
+
 class Game extends Immutable
 	constructor: (args) ->
-		@[k] = v for k, v of @_buildProperties(['date', 'homeTeam', 'awayTeam', 'home', 'away'],  args)
+		args._type = 'Game'
+		@[k] = v for k, v of @_buildProperties(['date', 'homeTeam', 'awayTeam', 'home', 'away', '_type'],  args)
 
 	played: () -> @home() isnt null and @away() isnt null
 
@@ -36,8 +39,20 @@ class Game extends Immutable
 	toString: ->
 		scores = if @played() then @home() + ":" + @away() else "-"
 		@date() +  " - " + @homeTeam().name() + " vs " + @awayTeam().name() + " " + scores
+		
+	equals: (other) ->
+		return false if typeof other != 'object'
+		return false if other.constructor != this.constructor
+		return false if this.homeTeam() != other.homeTeam()
+		return false if this.awayTeam() != other.awayTeam()
+		return false if this.date().getTime() != other.date().getTime()
+		return true;
 
-module.exports = (date, hT, aT, h, a) ->
-	new Game({date: date, homeTeam: hT, awayTeam: aT, home: h, away: a})
+module.exports =
+	'newGame': (date, hT, aT, h, a) ->
+		new Game({date: date, homeTeam: hT, awayTeam: aT, home: h, away: a})
+	'deserialize': (data) ->
+		this.newGame(new Date(data.date), team(data.homeTeam.name), team(data.awayTeam.name), data.home, data.away)
+			
 	
 	

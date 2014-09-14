@@ -61,10 +61,9 @@ class SoccerStatsLeagueDataParser
 				scores = $(cells[2]).find("b")
 				if(scores.length)
 					[home, away] = $(scores[0]).text().split(/-/)
-				
-				games.push(game(date, homeTeam, awayTeam, home, away))
+				games.push(game.newGame(date, homeTeam, awayTeam, home, away))
+			games.sort((a, b) -> a.date().getTime() - b.date().getTime() or if a.homeTeam().name() < b.homeTeam().name() then -1 else 1)
 			defer.resolve(games);
-		
 		defer.promise
 
 do_load = (qService, key, zone, year) ->
