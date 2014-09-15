@@ -1,14 +1,13 @@
 ###
  * Betexplorer Parser
 ###
-request		= require('request')
-cheerio		= require('cheerio')
-team			= require('./team')
-game			= require('./game')
-
+request = require('request')
+q 			= require('q')
+cheerio = require('cheerio')
+game		= require('./game')
+team		= require('/.team')
 Immutable	= require('./immutable')
 
-q = null
 trim = (str) ->
 	str.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g,'').replace(/\s+/g,' ')
 
@@ -39,7 +38,6 @@ class BetexplorerLeagueDataParser extends Immutable
 			defer.resolve(games)
 		defer.promise
 	
-module.exports = 
-	EN1_2013: (qService)->
-		q = qService;
-		new BetexplorerLeagueDataParser({path: 'england/premier-league-2013-2014', beginYear: 2013})
+module.exports =
+		EN1_2013: () ->
+			new BetexplorerLeagueDataParser({path: 'england/premier-league-2013-2014', beginYear: 2013})

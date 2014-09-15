@@ -1,8 +1,7 @@
 ###
  * Football Game
 ###
-team = require('./team')
-Immutable = require('./immutable')
+Immutable = if typeof module != 'undefined' && module.exports then require('./immutable') else this.Immutable
 
 class Game extends Immutable
 	constructor: (args) ->
@@ -49,10 +48,12 @@ class Game extends Immutable
 		return true;
 
 module.exports =
-	'newGame': (date, hT, aT, h, a) ->
-		new Game({date: date, homeTeam: hT, awayTeam: aT, home: h, away: a})
-	'deserialize': (data) ->
-		this.newGame(new Date(data.date), team(data.homeTeam.name), team(data.awayTeam.name), data.home, data.away)
+	(injector) ->
+		team = injector.teamFactory()
+		'newGame': (date, hT, aT, h, a) ->
+			new Game({date: date, homeTeam: hT, awayTeam: aT, home: h, away: a})
+		'deserialize': (data) ->
+			this.newGame(new Date(data.date), team(data.homeTeam.name), team(data.awayTeam.name), data.home, data.away)
 			
 	
 	

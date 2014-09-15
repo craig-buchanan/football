@@ -10,7 +10,7 @@ mockery.registerAllowable('cheerio')
 mockery.registerAllowable('./immutable')
 mockery.registerAllowable('./game')
 mockery.registerAllowable('./team')
-mockery.registerAllowable('../lib/betexplorer-parser')
+mockery.registerAllowable('../../lib/server/betexplorer-parser')
 mockery.registerAllowable('util')
 
 reqMock = () ->
@@ -23,7 +23,7 @@ mockery.registerMock 'request',
 
 mockery.enable()
 
-betexparser = require('../lib/betexplorer-parser')
+betexparser = require('../../lib/server/betexplorer-parser')
 exports.BetexTest =
 	"request stub functions": (test) ->
 		#test.expect(1)
