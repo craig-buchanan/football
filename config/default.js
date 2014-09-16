@@ -1,6 +1,5 @@
-
 module.exports = {
-	Football: {
-		data_store: "/Users/craig/workspace/node-football/data"
+	football: {
+		data_store: './data'
 	}
 }

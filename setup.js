@@ -2,7 +2,9 @@ var exec = require('child_process').exec;
 var sysPath = require('path');
 var fs = require('fs');
 
-// Cross-platform node.js postinstall & test script for coffeescript projects.
+//This is copied from The brunch project 
+//https://github.com/brunch/brunch
+//Cross-platform node.js postinstall & test script for coffeescript projects.
 
 var mode = process.argv[2];
 
@@ -21,7 +23,8 @@ var execute = function(path, params, callback) {
 	var command = path + ' ' + params;
 	console.log('Executing', command);
 	exec(command, function(error, stdout, stderr) {
-		if (error != null) return process.stderr.write(stderr.toString());
+		console.log(error == null ? stdout.toString() : stderr.toString())
+		if (error != null) return console.log(stderr.toString());
 		console.log(stdout.toString());
 	});
 };
@@ -62,7 +65,7 @@ switch (mode) {
 	// Run tests.
 	case 'test':
 		execute(getBinaryPath('coffee'), '-o lib/ src/');
-		execute(getBinaryPath('coffee'), '-o test-coffee/ test/');	
-		execute(getBinaryPath('nodeunit'), 'test' );
+		execute(getBinaryPath('coffee'), '-o test/ test-coffee/');	
+		execute(getBinaryPath('nodeunit'), "test/" );
 		break;
 }

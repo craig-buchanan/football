@@ -20,4 +20,3 @@ module.exports =
 			t2 = team("Arsenal")
 			test.strictEqual(t, t2, "Teams are not the same object when they should be")
 			test.done()
-		
