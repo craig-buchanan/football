@@ -6,13 +6,21 @@ define [], () ->
 		constructor: ->
 		
 		_buildProperties: (propsList, constructorArgs) ->
+			args = {}
+			args[k] = v for k,v of constructorArgs
 			returnArgs =
 				_properties: () -> propsList
-				_serialize: () -> constructorArgs
+				toJSON: () -> 
+					simpleObj = {}
+					for k, v of args
+						if(v != null  && typeof v == 'object' && 'toJSON' of v)
+							simpleObj[k] = v.toJSON()
+						else
+							simpleObj[k] = v 
+					simpleObj
+
 			for attr in propsList
 				do(attr) ->
-					returnArgs[attr] = () -> constructorArgs[attr]
+					returnArgs[attr] = () -> args[attr]
 			returnArgs
-
-
-	return Immutable
+	Immutable

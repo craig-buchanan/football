@@ -5,6 +5,9 @@ fs = require 'fs'
 
 
 compile = (src, target) ->
+	del = spawn 'rm', ['-r', '-f', target]
+	del.stderr.on 'err', (err) ->
+		console.log(err)
 	coffee = spawn 'node_modules/.bin/coffee', ['-c', '-o', target, src]
 	coffee.stderr.on 'data', (data) ->
 		process.stderr.write data.toString()

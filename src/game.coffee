@@ -1,7 +1,7 @@
 ###
  * Football Game
 ###
-define ['./immutable'], (Immutable) ->
+define ['./immutable', './team'], (Immutable, team) ->
 	class Game extends Immutable
 		constructor: (args) ->
 			@[k] = v for k, v of @_buildProperties(['date', 'homeTeam', 'awayTeam', 'home', 'away'],  args)
@@ -36,8 +36,18 @@ define ['./immutable'], (Immutable) ->
 		toString: ->
 			scores = if @played() then @home() + ":" + @away() else "-"
 			@date() +  " - " + @homeTeam().name() + " vs " + @awayTeam().name() + " " + scores
+		
+		equals: (other) ->
+			return false if typeof other != 'object'
+			return false if other.constructor != this.constructor
+			return false if this.homeTeam() != other.homeTeam()
+			return false if this.awayTeam() != other.awayTeam()
+			return false if this.date().getTime() != other.date().getTime()
+			return true;
 
-	return (date, hT, aT, h, a) ->
+	newGame: (date, hT, aT, h, a) ->
 		new Game({date: date, homeTeam: hT, awayTeam: aT, home: h, away: a})
+	deserialize: (data) ->
+		this.newGame(new Date(data.date), team(data.homeTeam.name), team(data.awayTeam.name), data.home, data.away)
 	
 	
