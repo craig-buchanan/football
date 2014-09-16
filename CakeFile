@@ -22,7 +22,3 @@ task 'build', 'Build lib/ from src/', ->
 	compile 'test-coffee', 'test', ->
 		{reporters} = require 'nodeunit'
 		reporters.default.run ['test']
-
-task 'buildTest', 'Build test/ from test-coffee/', ->
-	compile('src', 'lib')
-	compile('test-coffee', 'test')
