@@ -4,7 +4,9 @@
   "description": "Football data parser",
   "main": "lib/index.js",
   "scripts": {
-    "postinstall": "node setup.js postinstall"
+    "prepublish": "node setup.js prepublish",
+    "postpublish": "node setup.js postpublish",
+    "test": "node setup.js test"
   },
   "repository": {
     "type": "git",
@@ -23,7 +25,6 @@
   "homepage": "https://github.com/craig-buchanan/football",
   "devDependencies": {
     "coffee-script": "^1.8.0",
-    "mockery": "^1.4.0",
     "nodeunit": "^0.9.0",
     "proxyquire": "^1.0.1"
   },
