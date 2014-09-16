@@ -9,7 +9,7 @@ compile = (src, target, callback) ->
 	pw.stderr.on 'err', (err) ->
 		console.log(err.toString())
 	pw.stdout.on 'data', (data) ->
-		console.log(" std out has given: " + data.toString())
+		process.stdout.write "this is stdout: " + data.toString()
 	
 	del = spawn 'rm', ['-r', '-f', target]
 	del.stderr.on 'err', (err) ->
