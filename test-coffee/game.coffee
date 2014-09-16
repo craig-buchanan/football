@@ -1,10 +1,13 @@
 ###
  * New coffeescript file
 ###
-json = require('json-serialize')
-team = require('../lib/team')
-game = require('../lib/game')
-injector = require('../lib/injector')
+requirejs = require('requirejs')
+requirejs.config
+	baseUrl: 'lib',
+	nodeRequire: require
+team = requirejs('team')
+game = requirejs('game')
+
 t1 = team("Arsenal")
 t2 = team("Tottenham")
 g1 = game(injector).newGame(new Date(), t1, t2, 5, 0)

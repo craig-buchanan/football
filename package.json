@@ -4,8 +4,9 @@
   "description": "Football data parser",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "cake build",
-    "pretest": "cake buildTest",
+    "prepublish": "bin/coffee-compile.sh",
+    "install": "bin/coffee-compile.sh",
+    "pretest": "bin/coffee-compile.sh",
     "test": "nodeunit test"
   },
   "repository": {
@@ -29,13 +30,14 @@
     "nodeunit": "^0.9.0",
     "proxyquire": "^1.0.1",
     "q": "^1.0.1"
-  },
+  },:wq
   "dependencies": {
     "cheerio": "^0.17.0",
     "config": "^1.1.0",
     "json-serialize": "^1.1.2",
     "q": "^1.0.1",
     "request": "^2.42.0",
+    "requirejs": "^2.1.15",
     "timezone": "0.0.34"
   }
 }

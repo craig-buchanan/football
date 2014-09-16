@@ -1,22 +1,18 @@
 ###
  * New coffeescript file
 ###
-Immutable = require('./immutable')
-teams = {}
+define ['./immutable'], (Immutable) ->
 
-factory = (teamName) ->
-	t = new Team(teamName);
-	return teams[t.hashcode()] if t.hashcode() of teams
-	teams[t.hashcode()] = t
+	teams = {}
+	
+	class Team extends Immutable
+		constructor: (name) ->
+			@[k] = v for k, v of @_buildProperties(['name'],  {name: name})
+			_hashcode = @name().toLowerCase().replace().replace(/\s/g, '')
+			@hashcode = -> _hashcode
 
-class Team extends Immutable
-	constructor: (name) ->
-		@[k] = v for k, v of @_buildProperties(['name', '_type'],  {'name': name, '_type': 'Team'})
-		_hashcode = @name().toLowerCase().replace().replace(/\s/g, '')
-		@hashcode = -> _hashcode
-
-	fromJSON: (data) -> factory(data.name)
-
-
-module.exports = factory
+	return (teamName) ->
+		t = new Team(teamName);
+		return teams[t.hashcode()] if t.hashcode() of teams
+		teams[t.hashcode()] = t
 	

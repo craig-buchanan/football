@@ -1,3 +1,0 @@
-#index = require('../lib/index')
-
-

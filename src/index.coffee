@@ -1,24 +1,22 @@
-parser = require('./soccerstats-parser')
-json = require('json-serialize')
-fs = require('fs')
-q = require('q')
+#parser = require('./soccerstats-parser')
+#q = require('q')
 #league = require('./game')
-config = require('config')
 
 #l = new league({beginYear: 2014})
 #console.log("league begin year should be 2014 and is: " + l.beginYear())
 #if l.league()? then console.log("league year is correctly undefined") else console.log("league year is defined")
 
 
-#parser.EN1_2014(q).then( (games) -> 
-#
-#	console.log("writing to file ", config.get("Football.data_store") + "/EN1_2014\n")
-#	data = JSON.stringify(games)
-#	console.log(data)
-#	fs.writeFile( config.get("Football.data_store") + "/EN1_2014", data, (err) ->
-#	 console.log(err) if err
-#	 console.log("file SAVED!")
-#	)
-#)
+#parser.EN3_2014(q).then (games) -> 
+#	games.sort((a, b) -> a.date.getTime() - b.date.getTime() or if a.homeTeam.name < b.homeTeam.name then -1 else 1) 
+#	console.log( g.toString() ) for g in games
+#	console.log("There are " + games.length + " games"); 
+requirejs = require('requirejs')
+requirejs.config
+	baseUrl: 'lib',
+	nodeRequire: require
 
+requirejs ['team'], (team) ->
+	console.log("running")
+	console.log("my team is: " + team("Arsenal").name())
 
