@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "prepublish": "bin/coffee-compile.sh",
+    "install": "bin/coffee-compile.sh",
     "pretest": "bin/coffee-compile.sh",
     "test": "nodeunit test"
   },
