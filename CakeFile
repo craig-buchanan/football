@@ -3,12 +3,12 @@ fs = require 'fs'
 {print} = require 'sys'
 {spawn} = require 'child_process'
 
-coffeeBin = './node_modules/.bin/coffee'
+coffeeBin = 'node_modules/.bin/coffee'
 compile = (src, target, callback) ->
 	del = spawn 'rm', ['-r', '-f', target]
 	del.stderr.on 'err', (err) ->
 		console.log(err)
-	console.log(coffeeBin)
+	
 	coffee = spawn coffeeBin, ['-c', '-o', target, src]
 	coffee.stderr.on 'data', (data) ->
 		process.stderr.write data.toString()
