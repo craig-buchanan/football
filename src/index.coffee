@@ -1,6 +1,6 @@
 #parser = require('./soccerstats-parser')
 #q = require('q')
-league = require('./game')
+#league = require('./game')
 
 #l = new league({beginYear: 2014})
 #console.log("league begin year should be 2014 and is: " + l.beginYear())
@@ -11,6 +11,12 @@ league = require('./game')
 #	games.sort((a, b) -> a.date.getTime() - b.date.getTime() or if a.homeTeam.name < b.homeTeam.name then -1 else 1) 
 #	console.log( g.toString() ) for g in games
 #	console.log("There are " + games.length + " games"); 
+requirejs = require('requirejs')
+requirejs.config
+	baseUrl: 'lib',
+	nodeRequire: require
 
-
+requirejs ['team'], (team) ->
+	console.log("running")
+	console.log("my team is: " + team("Arsenal").name())
 

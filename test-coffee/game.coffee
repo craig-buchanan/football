@@ -1,8 +1,12 @@
 ###
  * New coffeescript file
 ###
-team = require('../lib/team')
-game = require('../lib/game')
+requirejs = require('requirejs')
+requirejs.config
+	baseUrl: 'lib',
+	nodeRequire: require
+team = requirejs('team')
+game = requirejs('game')
 
 t1 = team("Arsenal")
 t2 = team("Tottenham")
