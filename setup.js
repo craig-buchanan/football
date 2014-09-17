@@ -25,6 +25,7 @@ var execute = function(path, params, callback) {
 	exec(command, function(error, stdout, stderr) {
 		if (error != null) return console.log(stdout.toString() + stderr.toString());
 		console.log(stdout.toString());
+		callback();
 	});
 };
 
@@ -55,16 +56,20 @@ switch (mode) {
 
 	// Compile coffeescript for git users.
 	case 'postinstall':
-		fsExists(sysPath.join(__dirname, 'lib'), function(exists) {
-			if (exists) return;
+//		fsExists(sysPath.join(__dirname, 'lib'), function(exists) {
+//			if (exists) return;
 			execute(getBinaryPath('coffee'), '-o lib/ src/');
-		});
+//		});
 		break;
 
 	// Run tests.
 	case 'test':
-		execute(getBinaryPath('coffee'), '-o lib/ src/');
-		execute(getBinaryPath('coffee'), '-o test/ test-coffee/');	
-		execute(getBinaryPath('nodeunit'), "test/**" );
+		execute(getBinaryPath('coffee'), '-o lib/ src/', function() {
+			
+			execute(getBinaryPath('coffee'), '-o test/ test-coffee/', function() {
+				
+				execute(getBinaryPath('nodeunit'), "test/**" );
+			});	
+		});
 		break;
 }

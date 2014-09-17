@@ -4,7 +4,8 @@
   "description": "Football data parser",
   "main": "lib/index.js",
   "scripts": {
-    "postpublish": "node setup.js prepublish",
+    "prepublish": "node setup.js prepublish",
+    "postpublish": "node setup.js postpublish",
     "test": "node setup.js test"
   },
   "repository": {
@@ -25,8 +26,7 @@
   "devDependencies": {
     "coffee-script": "^1.8.0",
     "nodeunit": "^0.9.0",
-    "proxyquire": "^1.0.1",
-    "squirejs": "^0.2.0"
+    "proxyquire": "^1.0.1"
   },
   "dependencies": {
     "cheerio": "^0.17.0",
