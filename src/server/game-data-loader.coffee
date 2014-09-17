@@ -9,6 +9,6 @@ define ['config', 'fs', 'q', 'path'], (config, fs, q, path) ->
 		fs.readFile fileName, (err, data)->
 			console.log(err) if err
 			return defer.reject err  if err
-			return defer.resolve data
+			return defer.resolve data.toString()
 		defer.promise
 

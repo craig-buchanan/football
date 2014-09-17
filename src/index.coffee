@@ -13,10 +13,10 @@
 #	console.log("There are " + games.length + " games"); 
 requirejs = require('requirejs')
 requirejs.config
-	baseUrl: __dirname + "/..",
+	baseUrl: __dirname,
 	nodeRequire: require
 
 module.exports = 
 	getData: (league, year) ->
-		dataLoader = requirejs('server/game-data-loader')
+		requirejs('server/game-data-loader')(league, year)
 
