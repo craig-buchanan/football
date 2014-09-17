@@ -6,9 +6,6 @@ requirejs.config
 	baseUrl: 'lib',
 	paths:
 		'cliserv': 'server'
-		'data': '../data'
-	text:
-		env: 'node'
 	nodeRequire: require
 console.log process.env.NODE_ENV
 data_loader = requirejs('cliserv/game-data-loader')
