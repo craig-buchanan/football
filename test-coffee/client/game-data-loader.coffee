@@ -13,7 +13,7 @@ Squire = requirejs 'squirejs'
 q = require('q')
 injector = new Squire()
 serialized_game_data = '[{"date":"2014-08-16T11:45:00.000Z","homeTeam":{"name":"Manchester Utd","_type":"Team"},"awayTeam":{"name":"Swansea City","_type":"Team"},"home":"1","away":"2","_type":"Game"},{"date":"2014-08-16T14:00:00.000Z","homeTeam":{"name":"Leicester City","_type":"Team"},"awayTeam":{"name":"Everton","_type":"Team"},"home":"2","away":"2","_type":"Game"}]'
-mock_http = (@conf) -> 
+mock_http = (@conf) ->
 mock_http.get = (url) ->
 	defer = q.defer()
 	setTimeout(()-> 

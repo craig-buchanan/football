@@ -1,5 +1,7 @@
 ###
  * New coffeescript file
 ###
-define [], () ->
-	return "CLIENT SIDE"
+define ['angular'], (ng) ->
+	ng.module("gameDataLoader", []).service("gameData", ['$http', (http)-> cosn])
+	dataLoader = (leagueKey, year) ->
+	
