@@ -10,10 +10,12 @@ define ['config', 'fs', 'q', 'path'], (config, fs, q, path) ->
 			require ['./server/betexplorer-parser'], (be_parser) ->
 				be_parser[key](year).parse().then (games) ->
 					data = JSON.stringify(games)
-					fs.writeFile fileName, JSON.stringify(games) , (err) ->
-						defer.resolve data
+					console.log("we have parsed the following data: " + data)
+					fs.writeFile fileName, data, (err) ->
+						return defer.reject(err) if err
+						return defer.resolve data
 				, (error) ->
-					defer.reject
+					defer.reject(error)
 			, (error) -> console.log(error)
 		else
 			defer.reject
