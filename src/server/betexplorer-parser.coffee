@@ -5,7 +5,8 @@
 define ['request', 'q', 'cheerio', 'game', 'team', 'immutable'], (request, q, cheerio, game, team, Immutable) ->
 	trim = (str) ->
 		str.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g,'').replace(/\s+/g,' ')
-	
+	urls
+		EN1_2
 	class BetexplorerLeagueDataParser extends Immutable
 		constructor: (args) ->
 			@[k] = v for k, v of @_buildProperties(['path', 'beginYear'], args)
@@ -15,6 +16,7 @@ define ['request', 'q', 'cheerio', 'game', 'team', 'immutable'], (request, q, ch
 		parse: ->
 			defer = q.defer()
 			games = []
+			console.log "we are trying to get data from: " + @url()
 			request @url(), (err, resp, body) =>
 				return defer.reject(err) if err
 				console.log "we have received data from the website." + body
