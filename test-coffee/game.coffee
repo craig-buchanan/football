@@ -12,7 +12,6 @@ requirejs.config
 
 team = requirejs('team')
 game = requirejs('game')
-gameDataLoader = requirejs('cliserv/game-data-loader')
 json = requirejs('json-serialize')
 
 t1 = team("Arsenal")

@@ -23,8 +23,7 @@ var execute = function(path, params, callback) {
 	var command = path + ' ' + params;
 	console.log('Executing', command);
 	exec(command, function(error, stdout, stderr) {
-		console.log(error == null ? stdout.toString() : stderr.toString())
-		if (error != null) return console.log(stderr.toString());
+		if (error != null) return console.log(stdout.toString() + stderr.toString());
 		console.log(stdout.toString());
 	});
 };
@@ -66,6 +65,6 @@ switch (mode) {
 	case 'test':
 		execute(getBinaryPath('coffee'), '-o lib/ src/');
 		execute(getBinaryPath('coffee'), '-o test/ test-coffee/');	
-		execute(getBinaryPath('nodeunit'), "test/" );
+		execute(getBinaryPath('nodeunit'), "test/**" );
 		break;
 }
