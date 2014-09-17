@@ -1,7 +1,10 @@
 ###
  * server side game-data-loader test
 ###
+config = require 'config'
+fs = require 'fs'
 requirejs = require 'requirejs'
+
 requirejs.config
 	baseUrl: 'lib',
 	paths:
@@ -17,7 +20,11 @@ module.exports.gameDataLoaderTest =
 			console.log "data has been returned"  
 			games = JSON.parse(data)
 			test.equals games.length, 380
-			#test.equals games[0].homeTeam().name(), "Manchester Utd"
 			test.done() 
 		, (err) -> console.log "Data loader threw an error: " + err
-			
+	"test reads from remote site when data not there": (test) ->
+		filename = config.football.data_store + "/EN1_2013.json";
+		fs.unlink(filename, () ->)
+		data_loader('EN1', 2013).then (data) ->
+			test.done()
+		
