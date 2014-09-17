@@ -4,7 +4,7 @@
   "description": "Football data parser",
   "main": "lib/index.js",
   "scripts": {
-    "publish": "node setup.js postpublish",
+    "install": "node setup.js postpublish",
     "test": "node setup.js test"
   },
   "repository": {
