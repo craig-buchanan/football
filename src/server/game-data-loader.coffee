@@ -8,7 +8,7 @@ define ['config', 'fs', 'q', 'path'], (config, fs, q, path) ->
 		defer = q.defer() 
 		if(year < 2014)
 			require ['./server/betexplorer-parser'], (be_parser) ->
-				be_parser[key + '_' + year]().parse().then (games) ->
+				be_parser[key](year).parse().then (games) ->
 					data = JSON.stringify(games)
 					fs.writeFile fileName, JSON.stringify(games) , (err) ->
 						defer.resolve data

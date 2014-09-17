@@ -35,5 +35,5 @@ define ['request', 'q', 'cheerio', 'game', 'team', 'immutable'], (request, q, ch
 			defer.promise
 		
 	
-	EN1_2013: () ->
-		new BetexplorerLeagueDataParser({path: 'england/premier-league-2013-2014', beginYear: 2013})
+	EN1: (beginYear) ->
+		new BetexplorerLeagueDataParser({path: 'england/premier-league-' + beginYear + '-' + (beginYear+1), 'beginYear': beginYear})
