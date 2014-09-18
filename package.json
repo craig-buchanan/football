@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "node setup.js prepublish",
     "postpublish": "node setup.js postpublish",
-    "test": "node setup.js test"
+    "test": "cake test"
   },
   "repository": {
     "type": "git",
