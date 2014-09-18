@@ -1,39 +1,39 @@
 {
-  "name": "football",
-  "version": "0.0.1",
-  "description": "Football data parser",
-  "main": "lib/index.js",
-  "scripts": {
-    "postinstall": "cake build",
-    "test": "cake test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/craig-buchanan/football.git"
-  },
-  "keywords": [
-    "football",
-    "football-data",
-    "html-parser"
-  ],
-  "author": "Craig Buchanan <craig.buchanan.is@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/craig-buchanan/football/issues"
-  },
-  "homepage": "https://github.com/craig-buchanan/football",
-  "devDependencies": {
-    "nodeunit": "^0.9.0",
-    "proxyquire": "^1.0.1"
-  },
-  "dependencies": {
+	"name": "football",
+	"version": "0.0.1",
+	"description": "Football data parser",
+	"main": "lib/index.js",
+	"scripts": {
+		"postinstall": "cake build",
+		"test": "cake test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/craig-buchanan/football.git"
+	},
+	"keywords": [
+		"football",
+		"football-data",
+		"html-parser"
+	],
+	"author": "Craig Buchanan <craig.buchanan.is@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/craig-buchanan/football/issues"
+	},
+	"homepage": "https://github.com/craig-buchanan/football",
+	"devDependencies": {
+		"nodeunit": "^0.9.0",
+		"proxyquire": "^1.0.1"
+	},
+	"dependencies": {
 	"coffee-script": "^1.8.0",
-    "cheerio": "^0.17.0",
-    "config": "^1.1.0",
-    "json-serialize": "^1.1.2",
-    "q": "^1.0.1",
-    "request": "^2.42.0",
-    "requirejs": "^2.1.15",
-    "timezone": "0.0.34"
-  }
+		"cheerio": "^0.17.0",
+		"config": "^1.1.0",
+		"json-serialize": "^1.1.2",
+		"q": "^1.0.1",
+		"request": "^2.42.0",
+		"requirejs": "^2.1.15",
+		"timezone": "0.0.34"
+	}
 }
