@@ -4,7 +4,7 @@
   "description": "Football data parser",
   "main": "lib/index.js",
   "scripts": {
-    "publish": "cake build",
+    "prepublish": "cake build",
     "test": "cake test"
   },
   "repository": {
