@@ -10,6 +10,7 @@ requirejs.config
 	}
 	nodeRequire: require
 
+	
 team = requirejs('team')
 game = requirejs('game')
 json = requirejs('json-serialize')

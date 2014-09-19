@@ -27,6 +27,7 @@ month_map =
 	dec: '12'
 
 class SoccerStatsLeagueDataParser 
+	
 	constructor: (name, @zone, @beginYear) ->
 		@url = "http://www.soccerstats.com/table.asp?league=" + name + "&tid=b"
 		

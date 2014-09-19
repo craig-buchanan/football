@@ -1,39 +1,45 @@
 {
-	"name": "football",
-	"version": "0.0.1",
-	"description": "Football data parser",
-	"main": "lib/index.js",
-	"scripts": {
-		"postinstall": "cake build",
-		"test": "cake test"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/craig-buchanan/football.git"
-	},
-	"keywords": [
-		"football",
-		"football-data",
-		"html-parser"
-	],
-	"author": "Craig Buchanan <craig.buchanan.is@gmail.com>",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/craig-buchanan/football/issues"
-	},
-	"homepage": "https://github.com/craig-buchanan/football",
-	"devDependencies": {
-		"nodeunit": "^0.9.0",
-		"proxyquire": "^1.0.1"
-	},
-	"dependencies": {
-	"coffee-script": "^1.8.0",
-		"cheerio": "^0.17.0",
-		"config": "^1.1.0",
-		"json-serialize": "^1.1.2",
-		"q": "^1.0.1",
-		"request": "^2.42.0",
-		"requirejs": "^2.1.15",
-		"timezone": "0.0.34"
-	}
+  "name": "football",
+  "version": "0.0.1",
+  "description": "Football data parser",
+  "main": "lib/server/index.js",
+  "scripts": {
+    "postinstall": "grunt",
+    "test": "cake test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/craig-buchanan/football.git"
+  },
+  "keywords": [
+    "football",
+    "football-data",
+    "html-parser"
+  ],
+  "author": "Craig Buchanan <craig.buchanan.is@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/craig-buchanan/football/issues"
+  },
+  "homepage": "https://github.com/craig-buchanan/football",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-coffee": "^0.11.1",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-requirejs": "^0.4.4",
+    "grunt-contrib-watch": "^0.6.1",
+    "nodeunit": "^0.9.0",
+    "proxyquire": "^1.0.1"
+  },
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "cheerio": "^0.17.0",
+    "config": "^1.1.0",
+    "json-serialize": "^1.1.2",
+    "q": "^1.0.1",
+    "request": "^2.42.0",
+    "requirejs": "^2.1.15",
+    "timezone": "0.0.34"
+  }
 }

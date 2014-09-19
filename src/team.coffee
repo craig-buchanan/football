@@ -2,7 +2,6 @@
  * New coffeescript file
 ###
 define ['./immutable'], (Immutable) ->
-
 	teams = {}
 	
 	class Team extends Immutable

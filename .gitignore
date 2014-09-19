@@ -3,3 +3,5 @@ lib/*
 node_modules
 .project
 config/local-dev_leia.js
+public/
+nohup.out

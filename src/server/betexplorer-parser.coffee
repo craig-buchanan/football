@@ -15,10 +15,8 @@ define ['request', 'q', 'cheerio', 'game', 'team', 'immutable'], (request, q, ch
 		parse: ->
 			defer = q.defer()
 			games = []
-			console.log "we are trying to get data from: " + @url()
 			request @url(), (err, resp, body) =>
 				return defer.reject(err) if err
-				console.log "we have received data from the website." + body
 				$ = cheerio.load(body)
 				index = {}
 				for r in $('#leagueresults_tbody tr')
