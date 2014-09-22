@@ -77,4 +77,4 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt-contrib-jade'
 	grunt.loadNpmTasks 'grunt-angular-templates'
 	grunt.loadNpmTasks 'grunt-contrib-clean'
-	grunt.registerTask 'default', ['clean', 'coffee', 'nodeunit', 'jade', 'requirejs']
+	grunt.registerTask 'default', ['clean', 'coffee', 'jade', 'requirejs']
