@@ -4,7 +4,7 @@
   "description": "Football data parser",
   "main": "lib/server/index.js",
   "scripts": {
-    "preinstall": "grunt"
+    "postinstall": "grunt"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,9 @@
   "homepage": "https://github.com/craig-buchanan/football",
   "devDependencies": {
     "proxyquire": "^1.0.1",
+		"nodeunit": "^0.9.0"
+	},
+  "dependencies": {
 		"grunt": "^0.4.5",
 		"grunt-contrib-clean": "^0.6.0",
 		"grunt-contrib-coffee": "^0.11.1",
@@ -30,9 +33,6 @@
 		"grunt-contrib-nodeunit": "^0.4.1",
 		"grunt-contrib-requirejs": "^0.4.4",
 		"grunt-contrib-watch": "^0.6.1",
-		"nodeunit": "^0.9.0"
-	},
-  "dependencies": {
     "amdefine": "^0.1.0",
     "cheerio": "^0.17.0",
     "coffee-script": "^1.8.0",
