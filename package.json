@@ -4,7 +4,7 @@
   "description": "Football data parser",
   "main": "lib/server/index.js",
   "scripts": {
-    "postinstall": "grunt",
+    "postinstall": "node_modules/.bin/grunt",
     "test": "cake test"
   },
   "repository": {
