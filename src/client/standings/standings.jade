@@ -1,0 +1,27 @@
+.standings
+	.row
+		h3.title Standings
+
+	.row
+		.col-title.position &nbsp;
+		.col-title.team-name(		x-ng-click="doSort('T')" x-ng-class="titleClass('T')") &nbsp;
+		.col-title.games-played(	x-ng-click="doSort('GP')" x-ng-class="titleClass('GP')") G
+		.col-title.wins(			x-ng-click="doSort('W')" x-ng-class="titleClass('W')") W
+		.col-title.draws(			x-ng-click="doSort('D')" x-ng-class="titleClass('D')") D
+		.col-title.losses(			x-ng-click="doSort('L')" x-ng-class="titleClass('L')") L
+		.col-title.goals-for(		x-ng-click="doSort('GF')" x-ng-class="titleClass('GF')") Gf
+		.col-title.goals-against(	x-ng-click="doSort('GA')" x-ng-class="titleClass('GA')") Ga
+		.col-title.goals-difference(x-ng-click="doSort('GD')" x-ng-class="titleClass('GD')") Gd
+		.col-title.points(			x-ng-click="doSort('P')" x-ng-class="titleClass('P')") Pts
+
+	.row(x-ng-repeat="standing in table")
+		.entry.position {{standing.position}}
+		.entry.team-name( 		x-ng-class="titleClass('T')" x-ng-click="selectTeam(standing.team())") {{standing.team().name()}}
+		.entry.games-played( 	x-ng-class="titleClass('GP')") 	{{standing.games()}}
+		.entry.wins( 			x-ng-class="titleClass('W')") 	{{standing.wins()}}
+		.entry.draws( 			x-ng-class="titleClass('D')") 	{{standing.draws()}}
+		.entry.losses( 			x-ng-class="titleClass('L')") 	{{standing.losses()}}
+		.entry.goals-for( 		x-ng-class="titleClass('GF')") 	{{standing.goals()}}
+		.entry.goals-against( 	x-ng-class="titleClass('GA')") 	{{standing.against()}}
+		.entry.goal-difference( x-ng-class="titleClass('GD')") 	{{standing.diff()}}
+		.entry.points(			x-ng-class="titleClass('P')") 	{{standing.points()}}

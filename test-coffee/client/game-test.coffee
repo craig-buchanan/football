@@ -2,18 +2,8 @@
  * New coffeescript file
 ###
 
-requirejs = require('requirejs')
-requirejs.config
-	baseUrl: 'lib',
-	paths: {
-		'cliserv': 'server'
-	}
-	nodeRequire: require
-
-	
-team = requirejs('team')
-game = requirejs('game')
-json = requirejs('json-serialize')
+team = require('../../lib/client/team')
+game = require('../../lib/client/game')
 
 t1 = team("Arsenal")
 t2 = team("Tottenham")
@@ -21,8 +11,12 @@ t2 = team("Tottenham")
 g1 = game.newGame(new Date(), t1, t2, 5, 0)
 g2 = game.newGame(new Date(), t1, t2, 0, 0)
 g3 = game.newGame(new Date(), t2, t1, 1, 4)
+g4 = game.newGame(new Date(), t2, t1)
+exports.GameTest =
+	"played is false when home or away are null": (test) ->
+		test.ok(!g4.played(), "played function is not working")
+		test.done()
 
-exports.GameTest = 
 	"played is true when home and away are not null": (test) ->
 		test.ok(g1.played())
 		test.done()

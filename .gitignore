@@ -5,3 +5,6 @@ node_modules
 config/local-dev_leia.js
 public/
 nohup.out
+.idea/
+.DS_Store
+npm-debug.log

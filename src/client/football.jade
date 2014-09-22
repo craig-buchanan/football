@@ -1,0 +1,7 @@
+.football
+	select.league-select( x-ng-model="selection.league" x-ng-options="league as league.name() for league in leagues" x-ng-change="resetLeague()")
+	select.season-select( x-ng-model="selection.season" x-ng-options="season as season.beginYear() for season in selection.league.seasons()") 
+	
+	standings( x-selection="selection" x-ng-if="selection.mode=='standings'")
+	//points-comparison(x-ng-if="selection.mode=='points-comparison'")
+	fix-cmp(x-selection="selection" x-ng-if="selection.mode=='fixture-comparison'")

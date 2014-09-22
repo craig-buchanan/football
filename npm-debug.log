@@ -1,26 +1,91 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node',
-1 verbose cli   '/usr/local/bin/npm',
-1 verbose cli   'uninstall',
-1 verbose cli   '-g',
-1 verbose cli   'coffee-script' ]
-2 info using npm@1.4.23
-3 info using node@v0.10.31
-4 verbose lib/node_modules/coffee-script unbuild
-5 info preuninstall coffee-script@1.8.0
-6 info uninstall coffee-script@1.8.0
-7 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild coffee-script@1.8.0
-8 verbose /usr/local/bin,[object Object] binRoot
-9 error Error: EACCES, unlink '/usr/local/bin/coffee'
-9 error  { [Error: EACCES, unlink '/usr/local/bin/coffee'] errno: 3, code: 'EACCES', path: '/usr/local/bin/coffee' }
-10 error Please try running this command again as root/Administrator.
-11 error System Darwin 13.3.0
-12 error command "node" "/usr/local/bin/npm" "uninstall" "-g" "coffee-script"
-13 error cwd /Volumes/Main/Users/craig/workspace/node-football
-14 error node -v v0.10.31
-15 error npm -v 1.4.23
-16 error path /usr/local/bin/coffee
-17 error code EACCES
-18 error errno 3
-19 error stack Error: EACCES, unlink '/usr/local/bin/coffee'
-20 verbose exit [ 3, true ]
+1 verbose cli [ '/Volumes/Main/Users/craig/.nvm/v0.10.32/bin/node',
+1 verbose cli   '/Volumes/Main/Users/craig/.nvm/v0.10.32/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'grunt-contrib-angulartemplates',
+1 verbose cli   '--save-dev' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'grunt-contrib-angulartemplates', null ]
+6 verbose cache add name=undefined spec="grunt-contrib-angulartemplates" args=["grunt-contrib-angulartemplates",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'grunt-contrib-angulartemplates',
+7 verbose parsed url   path: 'grunt-contrib-angulartemplates',
+7 verbose parsed url   href: 'grunt-contrib-angulartemplates' }
+8 silly lockFile ffee80d4-grunt-contrib-angulartemplates grunt-contrib-angulartemplates
+9 verbose lock grunt-contrib-angulartemplates /Volumes/Main/Users/craig/.npm/ffee80d4-grunt-contrib-angulartemplates.lock
+10 silly lockFile ffee80d4-grunt-contrib-angulartemplates grunt-contrib-angulartemplates
+11 silly lockFile ffee80d4-grunt-contrib-angulartemplates grunt-contrib-angulartemplates
+12 verbose addNamed [ 'grunt-contrib-angulartemplates', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile a8a1f3e1-grunt-contrib-angulartemplates grunt-contrib-angulartemplates@
+15 verbose lock grunt-contrib-angulartemplates@ /Volumes/Main/Users/craig/.npm/a8a1f3e1-grunt-contrib-angulartemplates.lock
+16 silly addNameRange { name: 'grunt-contrib-angulartemplates',
+16 silly addNameRange   range: '*',
+16 silly addNameRange   hasData: false }
+17 verbose request where is /grunt-contrib-angulartemplates
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 444ac2716871c7c3
+20 verbose url raw /grunt-contrib-angulartemplates
+21 verbose url resolving [ 'https://registry.npmjs.org/',
+21 verbose url resolving   './grunt-contrib-angulartemplates' ]
+22 verbose url resolved https://registry.npmjs.org/grunt-contrib-angulartemplates
+23 verbose request where is https://registry.npmjs.org/grunt-contrib-angulartemplates
+24 info trying registry request attempt 1 at 11:27:39
+25 http GET https://registry.npmjs.org/grunt-contrib-angulartemplates
+26 http 404 https://registry.npmjs.org/grunt-contrib-angulartemplates
+27 verbose headers { date: 'Sat, 20 Sep 2014 09:27:39 GMT',
+27 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 verbose headers   'content-type': 'application/json',
+27 verbose headers   'cache-control': 'max-age=0',
+27 verbose headers   'content-length': '52',
+27 verbose headers   'accept-ranges': 'bytes',
+27 verbose headers   via: '1.1 varnish',
+27 verbose headers   age: '0',
+27 verbose headers   'x-served-by': 'cache-ams4135-AMS',
+27 verbose headers   'x-cache': 'MISS',
+27 verbose headers   'x-cache-hits': '0',
+27 verbose headers   'x-timer': 'S1411205259.421870,VS0,VE172',
+27 verbose headers   'keep-alive': 'timeout=10, max=50',
+27 verbose headers   connection: 'Keep-Alive' }
+28 silly registry.get cb [ 404,
+28 silly registry.get   { date: 'Sat, 20 Sep 2014 09:27:39 GMT',
+28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     'cache-control': 'max-age=0',
+28 silly registry.get     'content-length': '52',
+28 silly registry.get     'accept-ranges': 'bytes',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     age: '0',
+28 silly registry.get     'x-served-by': 'cache-ams4135-AMS',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1411205259.421870,VS0,VE172',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 silly lockFile a8a1f3e1-grunt-contrib-angulartemplates grunt-contrib-angulartemplates@
+30 silly lockFile a8a1f3e1-grunt-contrib-angulartemplates grunt-contrib-angulartemplates@
+31 error 404 404 Not Found: grunt-contrib-angulartemplates
+31 error 404
+31 error 404 'grunt-contrib-angulartemplates' is not in the npm registry.
+31 error 404 You should bug the author to publish it
+31 error 404 It was specified as a dependency of 'football'
+31 error 404
+31 error 404 Note that you can also install from a
+31 error 404 tarball, folder, or http url, or git url.
+32 error System Darwin 13.3.0
+33 error command "/Volumes/Main/Users/craig/.nvm/v0.10.32/bin/node" "/Volumes/Main/Users/craig/.nvm/v0.10.32/bin/npm" "install" "grunt-contrib-angulartemplates" "--save-dev"
+34 error cwd /Volumes/Main/Users/craig/workspace/node-football
+35 error node -v v0.10.32
+36 error npm -v 1.4.28
+37 error code E404
+38 verbose exit [ 1, true ]

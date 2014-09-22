@@ -3,8 +3,9 @@ module.exports = (grunt) ->
 		pkg: grunt.file.readJSON 'package.json'
 		watch:
 			coffee:
-				files: ['src/**/*.coffee', 'test-coffee/**/*.coffee']
-				tasks: ['clean', 'coffee', 'nodeunit', 'requirejs']
+				files: ['src/**/*', 'test-coffee/**/*']
+				tasks: ['clean', 'coffee', 'nodeunit', 'jade', 'requirejs']
+
 		coffee:
 			compile:
 				expand: true
@@ -28,19 +29,52 @@ module.exports = (grunt) ->
 			compile:
 				options:
 					baseUrl: '.'
-					appDir: 'lib'
+					appDir: 'lib/client'
 					dir: 'public'
 					modules: [
-						name: 'client/index'
+						name: 'index'
 					]
-				
+					paths: 
+						angular: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js'
+						q: '//'
+						text: '../../node_modules/requirejs-text/text'
+
+					text:
+						env: 'node'
+
 					findNestedDependencies: true
-		
+
+		ngtemplates:
+			FootballApp:
+				cwd: "lib/client"
+				src: "**/*.html"
+				dest: "lib/client/templates.js"
+				options:
+					bootstrap: (module, script) ->"(function() {define(['angular'], function(ng){ " + script + "})}())"
+
+
+		jade:
+			compile:
+				options:
+					pretty: true
+					client: false
+				files: [
+					(
+						cwd: "src"
+						dest:	"lib/"
+						src:	"**/*.jade"
+						expand: true
+						ext: ".html"
+					)
+				]
+
 		clean: ['lib/', 'public/', 'test/']
 				
 	grunt.loadNpmTasks 'grunt-contrib-coffee'
 	grunt.loadNpmTasks 'grunt-contrib-watch'
 	grunt.loadNpmTasks 'grunt-contrib-nodeunit'
 	grunt.loadNpmTasks 'grunt-contrib-requirejs'
+	grunt.loadNpmTasks 'grunt-contrib-jade'
+	grunt.loadNpmTasks 'grunt-angular-templates'
 	grunt.loadNpmTasks 'grunt-contrib-clean'
-	grunt.registerTask 'default', ['clean', 'coffee', 'nodeunit', 'requirejs']
+	grunt.registerTask 'default', ['clean', 'coffee', 'nodeunit', 'jade', 'requirejs']

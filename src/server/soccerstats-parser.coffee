@@ -1,14 +1,17 @@
 ###
  * New coffeescript file
 ###
+
 request 	= require 'request'
 cheerio 	= require 'cheerio'
 timezone	= require 'timezone'
 tz 				=	timezone(require("timezone/Europe"))
-teams			= require('./team')
-game			= require('./game')
-
-q = null
+teams			= require('../client/team')
+game			= require('../client/game')
+q					= require('q')
+utf8			= require('utf8')
+iconv			= require('iconv-lite')
+iconv.extendNodeEncodings()
 trim = (str) ->
 	str.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g,'').replace(/\s+/g,' ')
 
@@ -46,7 +49,8 @@ class SoccerStatsLeagueDataParser
 	
 	parse: ->
 		defer = q.defer()
-		request @url, (err, resp, body) =>
+		request {url: @url, encoding:"ISO-8859-1"} , (err, resp, body) =>
+			return defer.reject err if(err)
 			$ = cheerio.load(body);
 			games = []
 			rows = $('.tabbertab .trow3')
@@ -67,14 +71,21 @@ class SoccerStatsLeagueDataParser
 			defer.resolve(games);
 		defer.promise
 
-do_load = (qService, key, zone, year) ->
-		q = qService
-		new SoccerStatsLeagueDataParser(key, zone, year).parse()
+keymap =
+	EN1: (year)-> new SoccerStatsLeagueDataParser('england', "Europe/London", year).parse()
+	EN2: (year)-> new SoccerStatsLeagueDataParser('england2', "Europe/London", year).parse()
+	EN3: (year)-> new SoccerStatsLeagueDataParser('england3', "Europe/London", year).parse()
+	EN4: (year)-> new SoccerStatsLeagueDataParser('england4', "Europe/London", year).parse()
+	DE1: (year)-> new SoccerStatsLeagueDataParser('germany', "Europe/Berlin", year).parse()
+	DE2: (year)-> new SoccerStatsLeagueDataParser('germany', "Europe/Berlin", year).parse()
+module.exports = (key, year) ->
+	keymap[key](year)
 
-module.exports = 
-		EN1_2014: (qService) -> do_load(qService, 'england', "Europe/London", 2014)
-		EN2_2014: (qService) -> do_load(qService, 'england2', "Europe/London", 2014)
-		EN3_2014: (qService) -> do_load(qService, 'england3', "Europe/London", 2014)
-		EN4_2014: (qService) -> do_load(qService, 'england4', "Europe/London", 2014)
+
+
+#	EN1_2014: (qService) -> do_load(qService, 'england', "Europe/London", 2014)
+#	EN2_2014: (qService) -> do_load(qService, 'england2', "Europe/London", 2014)
+#	EN3_2014: (qService) -> do_load(qService, 'england3', "Europe/London", 2014)
+#	EN4_2014: (qService) -> do_load(qService, 'england4', "Europe/London", 2014)
 			
 	

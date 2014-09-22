@@ -1,0 +1,20 @@
+.fixture-comparison
+	div(style="position:relative")
+		.title.row
+			h3.title(ng-click="selection.mode='points-comparison'") Fixtures Comparison
+	.season.title.row
+		.spacer.team(ng-click="selection.mode='standings'") {{selection.team.name()}}
+		.title.s1 {{s1.beginYear()}}
+		.title.s2 {{s2.beginYear()}}
+	.season.subtitle.row
+		.spacer &nbsp;
+		.subtitle.s1.home Home
+		.subtitle.s1.away Away
+		.subtitle.s2.home Home
+		.subtitle.s2.away Away
+	.team.row(ng-repeat="team in seasonTeams.allSorted()") 
+		.entry.team-name(ng-click="selection.team=team") {{team.name()}}
+		.entry.s1.home-game(ng-class="homeResultClass('s1', team)") {{homeResult('s1', team)}}
+		.entry.s1.away-game(ng-class="awayResultClass('s1', team)") {{awayResult('s1', team)}}
+		.entry.s2.home-game(ng-class="homeResultClass('s2', team)") {{homeResult('s2', team)}}
+		.entry.s2.away-game(ng-class="awayResultClass('s2', team)") {{awayResult('s2', team)}}

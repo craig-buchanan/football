@@ -7,10 +7,8 @@ requirejs = require 'requirejs'
 
 requirejs.config
 	baseUrl: 'lib',
-	paths:
-		'cliserv': 'server'
 	nodeRequire: require
-data_loader = requirejs('cliserv/game-data-loader')
+data_loader = requirejs('./server/game-data-loader')
 
 module.exports.gameDataLoaderTest = 
 	"test loads season": (test) ->

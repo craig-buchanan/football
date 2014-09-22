@@ -1,12 +1,8 @@
 ###
  * New coffeescript file
 ###
-requirejs = require('requirejs')
-requirejs.config
-	baseUrl: 'lib',
-	nodeRequire: require
 
-team = requirejs("./team")
+team = require("../../lib/client/team")
 
 module.exports =
 	teamTest:
