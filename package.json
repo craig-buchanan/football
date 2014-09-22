@@ -4,7 +4,7 @@
   "description": "Football data parser",
   "main": "lib/server/index.js",
   "scripts": {
-    "postinstall": "node_modules/.bin/grunt",
+    "postinstall": "grunt",
     "test": "cake test"
   },
   "repository": {
@@ -25,6 +25,7 @@
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-coffee": "^0.11.1",
     "grunt-contrib-jade": "^0.12.0",
