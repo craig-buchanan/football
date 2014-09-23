@@ -21,14 +21,15 @@ dataFromSrc = (key, year, fileName) ->
 	defer = q.defer()
 	if(year < 2014)
 		be_parser(key,year).then (games) ->
-				console.log("we have a result from the parser")
 				writeDataFile( games, fileName, defer)
 			, (err) ->
 				return defer.reject "We did not get the result we wanted from the Betex parser: " + err
 
 	else
 		ss_parser(key, 2014).then (games) ->
-			writeDataFile games, fileName, defer
+				writeDataFile games, fileName, defer
+			,(err) ->
+				defer.reject "The soccerstats parser gave an error: " + err
 	defer.promise
 
 class GameDataLoader
@@ -38,11 +39,11 @@ class GameDataLoader
 		fileName = path.join config.football.data_store, key + "_" + year + ".json"
 		fs.readFile fileName, (err, data)->
 			if err
-				return dataFromSrc(key, year, fileName).then (games) ->
+				dataFromSrc(key, year, fileName).then (games) ->
 						defer.resolve(games)
 					, (err)->
 						defer.reject err
-			defer.resolve JSON.parse(data.toString())
+			else defer.resolve JSON.parse(data.toString())
 		defer.promise
 
 

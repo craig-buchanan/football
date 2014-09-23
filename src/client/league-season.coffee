@@ -33,6 +33,7 @@ define ['./immutable', './game'], (Immutable, game) ->
 				weighting = @points() * 1000 + @diff() + goals / 1000
 
 	class LeagueSeason extends Immutable
+
 		constructor: (args) ->
 			@[k] = v for k, v of @_buildProperties(['league', 'beginYear'], args)
 

@@ -5,6 +5,7 @@ leagues = require('../client/league')
 
 module.exports = 
 	getData: (leagueKey, year) ->
+
 		defer = q.defer()
 		leaguesList = leagues(gdl, q).filter (l) -> l.key() == leagueKey
 		if leaguesList.length == 0
