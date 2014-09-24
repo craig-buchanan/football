@@ -8,6 +8,8 @@ module.exports = (grunt) ->
 
 		coffee:
 			compile:
+				options:
+					bare: true
 				expand: true
 				flatten: false
 				cwd: "#{__dirname}/src/"
@@ -16,15 +18,28 @@ module.exports = (grunt) ->
 				ext: '.js'
 		
 			test_compile:
+				options:
+					bare: true
 				expand: true
 				flatten: false
 				cwd: "#{__dirname}/test-coffee/"
 				src: ['**/*.coffee'],
 				dest: 'test/',
 				ext: '.js'
+
 		nodeunit:
 			all: ['test/**/*.js'],
-		
+
+		coverage:
+			options:
+				thresholds:
+					'statements': 90,
+					'branches': 90,
+					'lines': 90,
+					'functions': 90
+				dir: '../coverage',
+				root: 'test'
+
 		requirejs:
 			compile:
 				options:
@@ -68,7 +83,7 @@ module.exports = (grunt) ->
 					)
 				]
 
-		clean: ['lib/', 'public/', 'test/']
+		clean: ['lib/', 'public/', 'test/', 'coverage/']
 				
 	grunt.loadNpmTasks 'grunt-contrib-coffee'
 	grunt.loadNpmTasks 'grunt-contrib-watch'
@@ -77,4 +92,6 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt-contrib-jade'
 	grunt.loadNpmTasks 'grunt-angular-templates'
 	grunt.loadNpmTasks 'grunt-contrib-clean'
+	grunt.loadNpmTasks 'grunt-istanbul-coverage'
+
 	grunt.registerTask 'default', ['clean', 'coffee', 'jade', 'requirejs']
