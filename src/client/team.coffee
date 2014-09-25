@@ -3,6 +3,7 @@
 define ['./immutable'], (Immutable) ->
 	teams = {}
 
+
 	teamNameMap =
 		'Manchester United':		'Manchester Utd'
 		'West Bromwich': 				'West Brom'
@@ -20,6 +21,18 @@ define ['./immutable'], (Immutable) ->
 		'Bayer Leverkusen':			'Leverkusen'
 		'VfB Stuttgart':				'Stuttgart'
 		'FC Köln':							'Köln'
+		'Brighton & Hove':			'Brighton'
+		'Derby County':					'Derby'
+		'Leeds Utd':						'Leeds'
+		'Wigan Athletic':				'Wigan'
+		'Birmingham City':			'Birmingham'
+		'Cardiff City':					'Cardiff'
+		'Ipswich Town':					'Ipswich'
+		'Nottm Forest':					'Nottingham F.'
+		'Nottingham Forest':		'Nottingham F.'
+		'Nottingham':						'Nottingham F.'
+		'Norwich City':					'Norwich'
+		'Dusseldorf':						'Düsseldorf'
 
 
 	class Team extends Immutable

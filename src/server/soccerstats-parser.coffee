@@ -57,18 +57,36 @@ class SoccerStatsLeagueDataParser
 			postponedDate = new Date(tz((@beginYear+1) + "-06-01 00:00", @zone))
 			$(rows).each (i, row) =>
 				cells = $(row).find('td')
-				
+
 				date = @parseDate($(cells[0]).text())
 				date = postponedDate if !date
-				
 				[homeTeam, awayTeam] = $(cells[1]).text().split(/\s-\s/).map (n) -> teams(trim(n))
 				[home, away] = [null, null]
 				scores = $(cells[2]).find("b")
-				if(scores.length)
-					[home, away] = $(scores[0]).text().split(/-/)
-				games.push(game.newGame(date, homeTeam, awayTeam, home, away))
-			games.sort((a, b) -> a.date().getTime() - b.date().getTime() or if a.homeTeam().name() < b.homeTeam().name() then -1 else 1)
-			defer.resolve(games);
+
+				[home, away] = $(scores[0]).text().split(/-/) if(scores.length)
+				games.push game.newGame date, homeTeam, awayTeam, home, away
+
+			teamGames = {}
+			teamsList = []
+
+			for g in games
+				t = g.homeTeam()
+				if !(t.hashcode() of teamGames)
+					teamGames[t.hashcode()] = []
+					teamsList.push t
+				teamGames[t.hashcode()].push g
+
+			minGames = teamsList.length - 1
+
+			for k, homeGames of teamGames
+				console.log "checking #{k} homeGames - #{homeGames.length}"
+				if(homeGames.length != minGames)
+					homeTeam = homeGames[0].homeTeam()
+					missing = teamsList.filter (t) -> t != homeTeam and !(t in homeGames.map (g)-> g.awayTeam())
+					games.push  game.newGame( postponedDate, homeTeam, t) for t in missing
+
+			defer.resolve games
 		defer.promise
 
 keymap =
@@ -77,7 +95,7 @@ keymap =
 	EN3: (year)-> new SoccerStatsLeagueDataParser('england3', "Europe/London", year).parse()
 	EN4: (year)-> new SoccerStatsLeagueDataParser('england4', "Europe/London", year).parse()
 	DE1: (year)-> new SoccerStatsLeagueDataParser('germany', "Europe/Berlin", year).parse()
-	DE2: (year)-> new SoccerStatsLeagueDataParser('germany', "Europe/Berlin", year).parse()
+	DE2: (year)-> new SoccerStatsLeagueDataParser('germany2', "Europe/Berlin", year).parse()
 module.exports = (key, year) ->
 	keymap[key](year)
 

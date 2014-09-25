@@ -13,6 +13,7 @@ teams = require('../../lib/client/team')
 
 testData1 = requirejs('text!data/EN1_2013.json')
 testData2 = requirejs('text!data/EN1_2014-test.json')
+testData3 = requirejs('text!data/EN2_2014.json')
 
 q = require('q')
 
@@ -21,10 +22,13 @@ dataLoader = {}
 dataLoader.getSeasonGames = (@key, @year) ->
 
 	d = q.defer()
-	if year == 2014
-		d.resolve JSON.parse(testData2)
+	if(key == 'EN2')
+		d.resolve JSON.parse testData3
 	else
-		d.resolve JSON.parse(testData1)
+		if year == 2014
+			d.resolve JSON.parse testData2
+		else
+			d.resolve JSON.parse testData1
 	d.promise
 
 LeagueSeason = ls(dataLoader, q)
@@ -78,3 +82,15 @@ module.exports.LeagueSeasonTest =
 		season.standingsForTeam(teams "Arsenal").then (standings) ->
 			test.equal(standings.length, 38)
 			test.done()
+
+	"test en2 2014": (test) ->
+		season = new LeagueSeason(league: (key: ()->'EN2'), beginYear: 2014)
+		ssp = require('../../lib/server/soccerstats-parser')
+		ssp('EN2', 2014).then (gmes) ->
+			test.equal(gmes.length, 552)
+			test.done()
+#		gRaw = JSON.parse(testData3);
+#		test.equal(gRaw.length, 552)
+#		season.games().then (games)->
+#			test.equal(games.length, 552)
+#			test.done()

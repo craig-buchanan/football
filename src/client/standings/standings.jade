@@ -14,7 +14,7 @@
 		.col-title.goals-difference(	x-ng-click="doSort('GD')" x-ng-class="titleClass('GD')") 	Gd
 		.col-title.points(						x-ng-click="doSort('P')" 	x-ng-class="titleClass('P')") 	Pts
 
-	.row(x-ng-repeat="standing in table")
+	.row(x-ng-repeat="standing in table track by $index")
 		.entry.position {{standing.position()}}
 		.entry.team-name( 			x-ng-class="titleClass('T')" x-ng-click="selectTeam(standing.team())") {{standing.team().name()}}
 		.entry.games-played( 		x-ng-class="titleClass('GP')") 	{{standing.games()}}

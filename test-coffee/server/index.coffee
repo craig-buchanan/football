@@ -7,4 +7,4 @@ exports.indexTest =
 	"hmmm": (test) ->
 		football.getData('EN1', 2014).then (data) ->
 				test.done()
-			,(error) -> console.log("there was an erro getting football data.")
+			,(error) -> console.log("there was an error getting football data.")

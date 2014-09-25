@@ -50,49 +50,63 @@ define ['./immutable', './game'], (Immutable, game) ->
 		constructor: (args) ->
 			@[k] = v for k, v of @_buildProperties(['league', 'beginYear'], args)
 
-			[gamesDefer] = [null]
+			[gamesLoading] = [false]
 			[games, teams, teamsIndex, teamGames, teamStandings, tables] = [null, [], {},{}, {}, []]
 
+			addStandingCount = 0;
 			addTeamStanding = (game) =>
+
 				for t in [game.homeTeam(), game.awayTeam()]
 					teams.push t if !(t.hashcode() of teamsIndex)
 					teamsIndex[t.hashcode()] = t
 					teamGames[t.hashcode()] = [] if !teamGames[t.hashcode()]
 					teamGames[t.hashcode()].push game
 					teamStandings[t.hashcode()] = [] if !teamStandings[t.hashcode()]
-					teamStandings[t.hashcode()].push new Standing({team: t, season: @, fixtures: teamGames[t.hashcode()].map (g)-> g})
+
+					gamesForTeam = teamGames[t.hashcode()][0..teamGames[t.hashcode()].length]
+
+					teamStandings[t.hashcode()].push new Standing({team: t, season: @, fixtures: gamesForTeam})
+
 
 			sortTables = ()->
 				for x in [0..((teams.length-1)*2-1)] by 1
 					tables[x] = []
-					tables[x].push teamStandings[t.hashcode()][x] for t in teams
+					for t in teams
+						tables[x].push teamStandings[t.hashcode()][x]
+						console.log "team #{t.name()} has no standing for gameday: #{x+1}" if !teamStandings[t.hashcode()][x]
+
 					tables[x].sort (a, b) -> b.weighting() - a.weighting() or if a.team().name() < b.team().name() then -1 else 1
-					standing.setPosition(index+1) for standing, index in tables[x]
+					if tables[x]
+						for std, index in tables[x]
+							if std
+								std.setPosition(index+1)
+							else
+								console.log("We have a problem on game day: " + (x+1) )
+
 
 			@games = ()->
 
 				if(games?)
-					defer = q.defer()
-					defer.resolve games
-					return defer.promise
+					defer1 = q.defer()
+					defer1.resolve games
+					return defer1.promise
 
-				if gamesDefer?
-					return gamesDefer.promise
-				else
-					gamesDefer = q.defer()
+				if gamesLoading
+					defer2 = q.defer()
+					setTimeout((()=> @games().then (gs) -> defer2.resolve gs), 5)
+					return defer2.promise
+				gamesLoading = true
+				defer = q.defer()
 
-				dataLoader.getSeasonGames( @league().key(), @beginYear()).then (gameDataList) ->
+				dataLoader.getSeasonGames( @league().key(), @beginYear()).then ((gameDataList) ->
 						games =  gameDataList.map (gd)-> game.deserialize(gd)
 						games.sort (a, b) -> a.date().getTime() - b.date().getTime() or if a.homeTeam().name() < b.homeTeam().name() then -1 else 1
-
 						addTeamStanding g for g in games
-						sortTables()
 						teams.sort (a, b) -> if a.name() < b.name() then -1 else 1
-
-						gamesDefer.resolve games
-
-					, (err) -> gamesDefer.reject err
-				gamesDefer.promise
+						sortTables()
+						defer.resolve games
+					), (err) -> defer.reject err
+				defer.promise
 
 			@teams = () ->
 				defer = q.defer()

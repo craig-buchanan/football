@@ -4,12 +4,16 @@ define ['angular', 'league', 'game-data-loader', 'standings/standings', 'fixture
 
 	class FootballController
 		constructor: (@scope, leagues) ->
-			@scope.leagues = leagues
-
-			@scope.selection =
+			console.log('FootballController constructor')
+			scope.leagues = leagues
+			scope.selection =
 				league: leagues[0]
-				season: leagues[0].getSeason(2014)
-				mode: "standings"
+
+			scope.$watch 'selection.league', (l) ->
+				scope.seasons = l.seasons().slice().reverse()
+				scope.selection.mode = "standings"
+				scope.selection.season = scope.seasons[0]
+
 
 	footballDirective = () ->
 		restrict: 'E'

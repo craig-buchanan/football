@@ -9,10 +9,13 @@ define ['text!./standings.html'], (templ) ->
 			sortReverse = false
 
 			scope.$watch 'selection.season', (s) ->
+				console.log("standings season has changed")
 				return if !s
 				s.standings().then (standings) ->
+						console.log("we should be redrawing the table")
 						scope.table = standings
-
+					,(err) ->
+						console.log("there was an error changing season: " + err)
 
 			scope.titleClass = (fld) ->
 				if sortField == fld then 'active' else ''
