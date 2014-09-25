@@ -19,14 +19,13 @@ define ['text!./standings.html'], (templ) ->
 
 			scope.selectTeam = (team) ->
 				scope.selection.team = team
-				scope.selection.mode = 'fixture-comparison'
+				scope.selection.mode = 'points-comparison'
 
 			scope.doSort = (fld) ->
 
 				if fld == sortField then sortReverse = !sortReverse else sortReverse = false
 				if(sortReverse) then key = fld + '-' else key = fld
 				sortField = fld;
-
 				scope.table.sort(sorts[key])
 
 			sorts =

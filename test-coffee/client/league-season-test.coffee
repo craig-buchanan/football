@@ -9,8 +9,9 @@ league =
 	key: ()->"EN1"
 
 ls = require('../../lib/client/league-season')
+teams = require('../../lib/client/team')
 
-testData1 = requirejs('text!data/EN1_2010.json')
+testData1 = requirejs('text!data/EN1_2013.json')
 testData2 = requirejs('text!data/EN1_2014-test.json')
 
 q = require('q')
@@ -32,7 +33,7 @@ module.exports.LeagueSeasonTest =
 		season = new LeagueSeason({'league': league, beginYear: 2010})
 		season.games().then (games)->
 			test.equals(games.length, 380)
-			test.equals(games[0].homeTeam().name(), "Aston Villa")
+			test.equals(games[0].homeTeam().name(), "Arsenal")
 			test.done()
 
 	"test teams are created correctl": (test)->
@@ -46,15 +47,16 @@ module.exports.LeagueSeasonTest =
 		season = new LeagueSeason({'league': league, beginYear: 2010})
 		season.standings().then (standings) ->
 
-			test.equals(standings[0].team().name(), "Manchester Utd")
-			test.equals(standings[0].wins(), 23, "Wins are not calculated correctly")
-			test.equals(standings[0].draws(), 11, "Draws are not calculated correctly")
-			test.equals(standings[0].losses(), 4, "Losses are not calculated correctly")
-			test.equals(standings[0].points(), 80, "Points are not calculated correctly")
-			test.equals(standings[0].goals(), 78, "Goals are not calculated correctly")
+			test.equals(standings[0].team().name(), "Manchester City")
+			test.equals(standings[0].wins(), 27, "Wins are not calculated correctly")
+			test.equals(standings[0].draws(), 5, "Draws are not calculated correctly")
+			test.equals(standings[0].losses(), 6, "Losses are not calculated correctly")
+			test.equals(standings[0].points(), 86, "Points are not calculated correctly")
+			test.equals(standings[0].goals(), 102, "Goals are not calculated correctly")
 			test.equals(standings[0].against(), 37, "Goals against are not calculated correctly")
-			test.equals(standings[0].diff(), 41, "Goal difference is not calculated correctly")
-			test.equals(standings[0].weighting(), 80041.078, "Weighting is not calculated correctly")
+			test.equals(standings[0].diff(), 65, "Goal difference is not calculated correctly")
+			test.equals(standings[0].weighting(), 86065.102, "Weighting is not calculated correctly")
+			test.equals(standings[3].position(), 4, "The positions are not calculated correctly")
 
 			test.done()
 
@@ -66,4 +68,13 @@ module.exports.LeagueSeasonTest =
 			test.equals(standings[0].games(), 4, "Games are not calculated correctly")
 			test.equals(standings[0].wins(), 4, "Wins are not calculated correctly")
 			test.equals(standings[0].weighting(), 12009.015, "Weighting is not calculated correctly")
+			test.done()
+
+	"test standings for team give all results for team as standings": (test) ->
+
+		season = new LeagueSeason({'league': league, beginYear: 2013})
+		season.standingsForTeam(teams "Arsenal").then (standings) ->
+			test.equal(standings.length, 38)
+		season.standingsForTeam(teams "Arsenal").then (standings) ->
+			test.equal(standings.length, 38)
 			test.done()

@@ -1,0 +1,24 @@
+
+.points-comparison
+
+	h3.title(ng-click="selection.mode='fixture-comparison'") Points Comparison
+	.title-row.team-name( x-ng-click="selection.mode='standings'") {{selection.team.name()}}
+	.row.seasons-title-row
+		.game-number-title &nbsp;
+		.season-title( x-ng-repeat="s in selectedSeasons" ) {{s.beginYear()}}
+	.row.season-subtitle-row
+		.entry.game-number &nbsp;
+		span( x-ng-repeat="s in selectedSeasons" )
+			//.entry.subtitle.result Re
+			.entry.subtitle.points Pts.
+			.entry.subtitle.position Pos.
+	.row.season-row( x-ng-repeat="rnd in range" )
+
+		.row
+			.entry.game-number {{$index+1}}
+			.season-standing( x-ng-class="mo_class" x-ng-repeat="rndSeason in standings" ng-mousemove="setMousePoints($event)" ng-mouseout="mo_class=''" ng-mouseover="mo_class='active'")
+				.game-data(x-ng-if="rndSeason[rnd]" style="bottom: {{mLocY}}px; right:{{mLocX}}px;") {{gameData(rndSeason[rnd].game())}}
+				.entry.points-total( x-ng-class="getPointsClass(rndSeason[rnd])" ) {{rndSeason[rnd] ? rndSeason[rnd].points() : '-'}}
+				.entry.position {{rndSeason[rnd] ? rndSeason[rnd].position() : '-'}}
+		
+	

@@ -1,6 +1,6 @@
 `if (typeof define !== 'function') { var define = (require('amdefine'))(module); }`
 
-define ['angular', 'league', 'game-data-loader', 'standings/standings', 'fixture-comparison/fixture-comparison', 'text!football.html'], (ng, leagues, gdl, standings, fixtureComparison, templ) ->
+define ['angular', 'league', 'game-data-loader', 'standings/standings', 'fixture-comparison/fixture-comparison', 'points-comparison/points-comparison', 'text!football.html'], (ng, leagues, gdl, standings, fixtureComparison, pointsComparison, templ) ->
 
 	class FootballController
 		constructor: (@scope, leagues) ->
@@ -24,3 +24,4 @@ define ['angular', 'league', 'game-data-loader', 'standings/standings', 'fixture
 		.directive "football",  footballDirective
 		.directive "standings", standings
 		.directive "fixCmp", fixtureComparison
+		.directive "pointsComparison", pointsComparison

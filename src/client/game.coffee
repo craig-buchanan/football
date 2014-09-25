@@ -33,7 +33,6 @@ define ['./immutable', './team'], (Immutable, team) ->
 	
 		opponent: (team) ->
 
-			return false if !@played()
 			return null if team isnt @homeTeam() and team isnt @awayTeam()  
 			if @homeTeam() == team then @awayTeam() else @homeTeam()
 

@@ -5,7 +5,6 @@ module.exports = (grunt) ->
 			coffee:
 				files: ['src/**/*', 'test-coffee/**/*']
 				tasks: ['clean', 'coffee', 'nodeunit', 'jade', 'requirejs']
-
 		coffee:
 			compile:
 				options:
@@ -43,6 +42,10 @@ module.exports = (grunt) ->
 		requirejs:
 			compile:
 				options:
+					generateSourceMaps: true
+					preserveLicenseComments: false
+					optimize: 'uglify2'
+					useSourceUrl: true
 					baseUrl: '.'
 					appDir: 'lib/client'
 					dir: 'public'
