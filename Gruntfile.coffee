@@ -52,7 +52,7 @@ module.exports = (grunt) ->
 					modules: [
 						name: 'index'
 					]
-					paths: 
+					paths:
 						angular: '//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js'
 						q: '//'
 						text: '../../node_modules/requirejs-text/text'
