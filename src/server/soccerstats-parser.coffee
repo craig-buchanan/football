@@ -80,7 +80,6 @@ class SoccerStatsLeagueDataParser
 			minGames = teamsList.length - 1
 
 			for k, homeGames of teamGames
-				console.log "checking #{k} homeGames - #{homeGames.length}"
 				if(homeGames.length != minGames)
 					homeTeam = homeGames[0].homeTeam()
 					missing = teamsList.filter (t) -> t != homeTeam and !(t in homeGames.map (g)-> g.awayTeam())
