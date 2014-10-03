@@ -33,12 +33,14 @@ class GameDataLoader
 	getSeasonGames: (key, year) ->
 		defer = q.defer()
 		fileName = path.join config.football.data_store, key + "_" + year + ".json"
-		fs.readFile fileName, (err, data)->
-			if err
-				dataFromSrc(key, year, fileName).then ((games) -> defer.resolve games ), (err)-> defer.reject err
-			else
-				console.log("everything went ok and we have our data")
-				defer.resolve JSON.parse(data.toString())
+		if year == 2014
+			dataFromSrc(key, year, fileName).then ((games) -> defer.resolve games ), (err)-> defer.reject err
+		else
+			fs.readFile fileName, (err, data)->
+				if err
+					dataFromSrc(key, year, fileName).then ((games) -> defer.resolve games ), (err)-> defer.reject err
+				else
+					defer.resolve JSON.parse(data.toString())
 		defer.promise
 
 module.exports = new GameDataLoader()

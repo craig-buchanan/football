@@ -12,8 +12,8 @@ module.exports = (grunt) ->
 				expand: true
 				flatten: false
 				cwd: "#{__dirname}/src/"
-				src: ['**/*.coffee'],
-				dest: 'lib/',
+				src: ['**/*.coffee']
+				dest: 'lib/'
 				ext: '.js'
 		
 			test_compile:
