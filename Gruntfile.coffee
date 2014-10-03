@@ -62,14 +62,14 @@ module.exports = (grunt) ->
 
 					findNestedDependencies: true
 
-		ngtemplates:
-			FootballApp:
-				cwd: "lib/client"
-				src: "**/*.html"
-				dest: "lib/client/templates.js"
-				options:
-					bootstrap: (module, script) ->"(function() {define(['angular'], function(ng){ " + script + "})}())"
-
+#		ngtemplates:
+#			FootballApp:
+#				cwd: "lib/client"
+#				src: "**/*.html"
+#				dest: "lib/client/templates.js"
+#				options:
+#					bootstrap: (module, script) ->"(function() {define(['angular'], function(ng){ " + script + "})}())"
+#
 
 		jade:
 			compile:
@@ -93,7 +93,6 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt-contrib-nodeunit'
 	grunt.loadNpmTasks 'grunt-contrib-requirejs'
 	grunt.loadNpmTasks 'grunt-contrib-jade'
-	grunt.loadNpmTasks 'grunt-angular-templates'
 	grunt.loadNpmTasks 'grunt-contrib-clean'
 	grunt.loadNpmTasks 'grunt-istanbul-coverage'
 

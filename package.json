@@ -21,7 +21,7 @@
     "url": "https://github.com/craig-buchanan/football/issues"
   },
   "homepage": "https://github.com/craig-buchanan/football",
-  "devDependencies": {
+  "dependencies": {
     "amdefine": "^0.1.0",
     "coffee-script": "^1.8.0",
     "grunt": "^0.4.5",
@@ -32,12 +32,9 @@
     "grunt-contrib-requirejs": "^0.4.4",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-istanbul-coverage": "^0.1.0",
-    "jscoverage": "^0.5.6",
     "mockery": "^1.4.0",
     "nodeunit": "^0.9.0",
-    "proxyquire": "^1.0.1"
-  },
-  "dependencies": {
+    "proxyquire": "^1.0.1",
     "amdefine": "^0.1.0",
     "cheerio": "^0.17.0",
     "config": "^1.1.0",
