@@ -2,6 +2,7 @@
   "name": "football",
   "version": "0.0.1",
   "description": "Football data parser",
+	"private": true,
   "main": "lib/server/index.js",
   "scripts": {
     "postinstall": "grunt"
@@ -21,7 +22,7 @@
     "url": "https://github.com/craig-buchanan/football/issues"
   },
   "homepage": "https://github.com/craig-buchanan/football",
-  "dependencies": {
+  "bundledDependencies": {
     "amdefine": "^0.1.0",
     "coffee-script": "^1.8.0",
     "grunt": "^0.4.5",
