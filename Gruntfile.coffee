@@ -62,15 +62,6 @@ module.exports = (grunt) ->
 
 					findNestedDependencies: true
 
-#		ngtemplates:
-#			FootballApp:
-#				cwd: "lib/client"
-#				src: "**/*.html"
-#				dest: "lib/client/templates.js"
-#				options:
-#					bootstrap: (module, script) ->"(function() {define(['angular'], function(ng){ " + script + "})}())"
-#
-
 		jade:
 			compile:
 				options:
