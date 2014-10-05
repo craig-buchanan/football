@@ -5,7 +5,6 @@
   "description": "Football data parser",
   "main": "lib/server/index.js",
   "scripts": {
-		"preinstall": "grunt"
   },
   "repository": {
     "type": "git",
